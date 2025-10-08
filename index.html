@@ -400,10 +400,10 @@
         window.addEventListener('DOMContentLoaded', () => {
 
             Promise.all([
-                fetch('capabilities.json').then(r => r.json()),
+                fetch('bc-mapping.json').then(r => r.json()),
                 fetch('data.json').then(r => r.json()),
                 fetch('app-capabilities-unified.json').then(r => r.json())
-            ]).then(([capData, appData, unifiedData]) => {
+            ]).then(([bcMapping, appData, unifiedData]) => {
                 // Expander les régions dans toutes les applications
                 appData.forEach(app => {
                     if (app.countries) {
@@ -443,8 +443,8 @@
                     }
                 });
 
-                // Initialiser les capabilities depuis le fichier externe
-                initializeCapabilities(capData, appData);
+                // Initialiser les capabilities depuis le mapping hiérarchique
+                initializeCapabilities(bcMapping, appData);
                 
                 // Initialiser la recherche depuis le fichier externe
                 initializeSearch();

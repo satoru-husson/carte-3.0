@@ -485,35 +485,29 @@ function filterAndShowMarkersByCapabilities() {
     });
 }
 
-// Génération de l'interface hybride slider + tags
-function generateCapabilitiesInterface(capData, capabilitiesForm) {
-    // Groupe les capabilities par catégorie
-    const categorizedCaps = {};
-    Object.keys(capData).forEach(capId => {
-        const cap = capData[capId];
-        const categoryName = cap.l1_name;
-        if (!categorizedCaps[categoryName]) {
-            categorizedCaps[categoryName] = [];
-        }
-        categorizedCaps[categoryName].push({ id: capId, ...cap });
-    });
 
-    // Affiche chaque catégorie avec slider et tags
-    Object.keys(categorizedCaps).forEach(categoryName => {
+// Nouvelle version : génère l'interface à partir de la hiérarchie de bc-mapping.json
+function generateCapabilitiesInterface(bcMapping, capabilitiesForm) {
+    if (!bcMapping || !bcMapping._hierarchy) return;
+    const hierarchy = bcMapping._hierarchy;
+    // Pour chaque L1
+    Object.entries(hierarchy).forEach(([l1Id, l2s]) => {
+        // Utiliser bcL4Definitions.L1 pour le nom L1
+        const l1Name = (bcL4Definitions && bcL4Definitions.L1 && bcL4Definitions.L1[l1Id]) ? bcL4Definitions.L1[l1Id] : (bcMapping[l1Id]?.l1_name || l1Id);
         // Crée la section de catégorie
         const categorySection = document.createElement('div');
         categorySection.className = 'category-section';
-        categorySection.setAttribute('data-category', categoryName);
-        
+        categorySection.setAttribute('data-category', l1Name);
+
         // Container pour titre L1 + slider
         const titleContainer = document.createElement('div');
         titleContainer.className = 'l1-title-with-slider';
-        
+
         // Titre de la catégorie (cliquable pour élargir)
         const categoryTitle = document.createElement('span');
         categoryTitle.className = 'category-title clickable';
-        categoryTitle.textContent = categoryName;
-        categoryTitle.setAttribute('data-category', categoryName);
+        categoryTitle.textContent = l1Name;
+        categoryTitle.setAttribute('data-category', l1Name);
         categoryTitle.style.cursor = 'pointer';
         categoryTitle.style.fontSize = '1.5em';
         categoryTitle.style.fontWeight = 'bold';
@@ -524,59 +518,38 @@ function generateCapabilitiesInterface(capData, capabilitiesForm) {
         categoryTitle.style.display = 'block';
         categoryTitle.style.textAlign = 'center';
         categoryTitle.style.marginBottom = '15px';
-        
+
         // Slider pour L1
         const sliderWrapper = document.createElement('label');
         sliderWrapper.className = 'switch';
-        
+
         const sliderInput = document.createElement('input');
         sliderInput.type = 'checkbox';
         sliderInput.className = 'slider-checkbox-l1';
-        sliderInput.setAttribute('data-category', categoryName);
-        
+        sliderInput.setAttribute('data-category', l1Name);
+
         const sliderSpan = document.createElement('span');
         sliderSpan.className = 'slider round';
-        
+
         sliderWrapper.appendChild(sliderInput);
         sliderWrapper.appendChild(sliderSpan);
-        
+
         titleContainer.appendChild(categoryTitle);
         titleContainer.appendChild(sliderWrapper);
         categorySection.appendChild(titleContainer);
-        
+
         // Container pour les capabilities (masqué par défaut)
         const capabilitiesContainer = document.createElement('div');
         capabilitiesContainer.className = 'capabilities-container';
-        
+
         // Container pour les tags de capabilities
         const tagsContainer = document.createElement('div');
         tagsContainer.className = 'capability-tags-container';
-        
-        // Créer la structure hiérarchique L2 → L3
-        const l2Groups = new Map();
-        categorizedCaps[categoryName].forEach(cap => {
-            if (!l2Groups.has(cap.l2_name)) {
-                l2Groups.set(cap.l2_name, {
-                    l2Capabilities: [],
-                    l3Capabilities: []
-                });
-            }
-            
-            if (cap.l3_name) {
-                // Capacité L3
-                l2Groups.get(cap.l2_name).l3Capabilities.push({
-                    id: cap.id,
-                    name: cap.l3_name
-                });
-            } else {
-                // Capacité L2 seulement
-                l2Groups.get(cap.l2_name).l2Capabilities.push(cap.id);
-            }
-        });
-        
-        // Créer les tags L2 avec leurs L3
-        l2Groups.forEach((group, l2Name) => {
-            // Ne pas afficher de ligne si l2Name est vide ou null
+
+        // Pour chaque L2 de ce L1
+        Object.entries(l2s).forEach(([l2Id, l3s]) => {
+            // Utiliser bcL4Definitions.L2 pour le nom L2
+            const l2Name = (bcL4Definitions && bcL4Definitions.L2 && bcL4Definitions.L2[l2Id]) ? bcL4Definitions.L2[l2Id] : (bcMapping[l2Id]?.l2_name || l2Id);
             if (!l2Name || l2Name.trim() === '') return;
 
             const l2Container = document.createElement('div');
@@ -591,9 +564,10 @@ function generateCapabilitiesInterface(capData, capabilitiesForm) {
             l2Tag.className = 'capability-tag l2-tag';
             l2Tag.textContent = l2Name;
 
-            const allL2Ids = [...group.l2Capabilities, ...group.l3Capabilities.map(l3 => l3.id)];
-            l2Tag.setAttribute('data-capabilities', allL2Ids.join(','));
-            l2Tag.setAttribute('data-l2-name', l2Name); // Ajouter l'attribut manquant
+            // Récupérer tous les L3 ids de ce L2
+            const allL3Ids = Object.keys(l3s);
+            l2Tag.setAttribute('data-capabilities', allL3Ids.join(','));
+            l2Tag.setAttribute('data-l2-name', l2Name);
 
             // Slider à droite
             const sliderWrapper = document.createElement('label');
@@ -615,12 +589,12 @@ function generateCapabilitiesInterface(capData, capabilitiesForm) {
             l2Container.appendChild(tagContainer);
 
             // Container pour les L3 (masqué par défaut)
-            if (group.l3Capabilities.length > 0) {
+            if (allL3Ids.length > 0) {
                 const l3Container = document.createElement('div');
                 l3Container.className = 'l3-container';
                 l3Container.setAttribute('data-l2-name', l2Name);
 
-                group.l3Capabilities.forEach(l3 => {
+                allL3Ids.forEach(l3Id => {
                     // Créer le container pour checkbox + label
                     const l3CheckboxContainer = document.createElement('div');
                     l3CheckboxContainer.className = 'l3-checkbox-container';
@@ -629,16 +603,17 @@ function generateCapabilitiesInterface(capData, capabilitiesForm) {
                     const l3Checkbox = document.createElement('input');
                     l3Checkbox.type = 'checkbox';
                     l3Checkbox.className = 'l3-checkbox';
-                    l3Checkbox.id = `l3-${l3.id}`;
-                    l3Checkbox.setAttribute('data-capability', l3.id);
-                    l3Checkbox.setAttribute('data-category', categoryName);
+                    l3Checkbox.id = `l3-${l3Id}`;
+                    l3Checkbox.setAttribute('data-capability', l3Id);
+                    l3Checkbox.setAttribute('data-category', l1Name);
                     l3Checkbox.setAttribute('data-l2-name', l2Name);
 
                     // Créer le label
                     const l3Label = document.createElement('label');
                     l3Label.className = 'l3-label';
-                    l3Label.htmlFor = `l3-${l3.id}`;
-                    l3Label.textContent = l3.name;
+                    l3Label.htmlFor = `l3-${l3Id}`;
+                    // Utiliser bcL4Definitions.L3 pour le nom L3
+                    l3Label.textContent = (bcL4Definitions && bcL4Definitions.L3 && bcL4Definitions.L3[l3Id]) ? bcL4Definitions.L3[l3Id] : (bcMapping[l3Id]?.l3_name || l3Id);
 
                     // Assembler
                     l3CheckboxContainer.appendChild(l3Checkbox);
@@ -651,7 +626,7 @@ function generateCapabilitiesInterface(capData, capabilitiesForm) {
 
             tagsContainer.appendChild(l2Container);
         });
-        
+
         capabilitiesContainer.appendChild(tagsContainer);
         categorySection.appendChild(capabilitiesContainer);
         capabilitiesForm.appendChild(categorySection);
