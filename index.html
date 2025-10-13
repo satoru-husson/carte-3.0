@@ -139,7 +139,7 @@
                     regionGroups.latam.push(countryData);
                 } else if (['China', 'Japan', 'South Korea', 'Singapore', 'Malaysia', 'Thailand', 'Indonesia', 'Philippines', 'Vietnam', 'Australia', 'New Zealand', 'Cambodia', 'Laos', 'Myanmar', 'Brunei', 'China (Mainland)'].includes(country)) {
                     regionGroups.apac.push(countryData);
-                } else if (['India', 'United Arab Emirates', 'Saudi Arabia', 'Qatar', 'Kuwait', 'Bahrain', 'Oman', 'Jordan', 'Lebanon', 'Israel', 'Turkey', 'Iran', 'Iraq', 'Syria', 'Yemen', 'South Africa', 'Nigeria', 'Kenya', 'Ghana', 'Ethiopia', 'Tanzania', 'Uganda'].includes(country)) {
+                } else if (['India', 'United Arab Emirates', 'Saudi Arabia', 'Qatar', 'Kuwait', 'Bahrain', 'Oman', 'Jordan', 'Lebanon', 'Israel', 'Iran', 'Iraq', 'Syria', 'Yemen', 'South Africa', 'Nigeria', 'Kenya', 'Ghana', 'Ethiopia', 'Tanzania', 'Uganda'].includes(country)) {
                     regionGroups.imea.push(countryData);
                 } else if (['Morocco', 'Algeria', 'Tunisia', 'Libya', 'Egypt'].includes(country)) {
                     // Maghreb fait partie de l'Europe
@@ -355,11 +355,15 @@
                         
                         // Trouver l'application dans la liste complète
                         const item = allApps.find(i => i.name === itemName);
+                        console.log(`🔍 Application trouvée:`, item);
                         if (!item) return;
                         
                         // Afficher les capabilities de l'application
+                        console.log(`🔍 Appel de displayApplicationCapabilities pour: ${itemName}`);
                         if (typeof window.displayApplicationCapabilities === 'function') {
                             window.displayApplicationCapabilities(itemName, item);
+                        } else {
+                            console.error('❌ window.displayApplicationCapabilities n\'est pas une fonction !');
                         }
                         
                         // Colorier les pays sur la carte
@@ -402,8 +406,9 @@
             Promise.all([
                 fetch('bc-mapping.json').then(r => r.json()),
                 fetch('data.json').then(r => r.json()),
-                fetch('app-capabilities-unified.json').then(r => r.json())
-            ]).then(([bcMapping, appData, unifiedData]) => {
+                fetch('app-capabilities-unified.json').then(r => r.json()),
+                fetch('bc-definitions.json').then(r => r.json())
+            ]).then(([bcMapping, appData, unifiedData, bcDefinitions]) => {
                 // Expander les régions dans toutes les applications
                 appData.forEach(app => {
                     if (app.countries) {
@@ -433,6 +438,7 @@
                 // Stocker unifiedData globalement pour l'accès depuis capabilities.js
                 window.appCapabilitiesUnified = unifiedData;
                 
+                let injectionCount = 0;
                 appData.forEach(app => {
                     const caps = unifiedData[app.name];
                     if (caps) {
@@ -440,14 +446,30 @@
                         app.l2 = caps.l2 || [];
                         app.l3 = caps.l3 || [];
                         app.l4 = caps.l4 || [];
+                        injectionCount++;
+                        
+                        // Debug pour quelques applications
+                        if (['2IC Pallet', 'INES', 'Matrix TMS'].includes(app.name)) {
+                            console.log(`🔧 Injection pour ${app.name}:`, {l1: app.l1, l2: app.l2, l3: app.l3, l4: app.l4});
+                        }
+                    } else {
+                        console.warn(`⚠️ Pas de données unifiées pour ${app.name}`);
                     }
                 });
-
-                // Initialiser les capabilities depuis le mapping hiérarchique
-                initializeCapabilities(bcMapping, appData);
                 
-                // Initialiser la recherche depuis le fichier externe
-                initializeSearch();
+                console.log(`✅ Injection terminée: ${injectionCount}/${appData.length} applications ont reçu des données unifiées`);
+
+                // Stocker bcMapping globalement pour l'accès depuis capabilities.js
+                window.bcMapping = bcMapping;
+                
+                // Initialiser les capabilities depuis les définitions BC
+                initializeCapabilities(bcDefinitions, appData);
+                
+                // Initialiser la recherche avec un petit délai pour s'assurer que le DOM est prêt
+                setTimeout(() => {
+                    console.log('🕐 Initialisation retardée de la recherche...');
+                    initializeSearch();
+                }, 100);
                 
                 // Ajouter l'événement de zoom pour regrouper/dégrouper les markers
                 map.on('zoomend', function() {
