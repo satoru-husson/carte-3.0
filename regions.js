@@ -7,14 +7,14 @@ export const regionMapping = {
         "Malta", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", 
         "Slovenia", "Spain", "Sweden", "United Kingdom", "Switzerland", 
         "Norway", "Iceland", "Albania", "Bosnia and Herzegovina", "Montenegro", 
-        "North Macedonia", "Serbia"
+        "North Macedonia", "Serbia", "Turkey"
     ],
     "Europe+": [
         "Greece", "Morocco", "Belgium", "Netherlands", "Luxembourg", "Germany", 
         "France", "Spain", "Portugal", "Italy", "United Kingdom", "Ireland", 
         "Turkey", "Slovakia", "Switzerland", "Bulgaria", "Croatia", "Hungary", 
         "Latvia", "Portugal", "Romania", "Serbia", "Slovenia", "Czech Republic", 
-        "Tunisia", "Austria", "Poland", "Sweden","Finland","Denmark"
+        "Tunisia", "Austria", "Poland", "Sweden","Finland","Denmark","Turkey"
     ],
     "Nortam": [
         "United States of America", "Canada", "Mexico"
@@ -53,7 +53,6 @@ export const regionMapping = {
     ],
     "Imea": [
         "India", "United Arab Emirates", "Saudi Arabia", "Qatar", "Kuwait", 
-        "Bahrain", "Oman", "Jordan", "Lebanon", "Israel", "Turkey", 
         "Iran", "Iraq", "Syria", "Yemen", "South Africa","Kazakhstan"
     ]
 };
