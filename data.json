@@ -2,386 +2,323 @@
   {
     "name": "2IC Pallet",
     "countries": ["Anz"],
-    "category": "Asset & Fleet Management",
-    "capabilities": ["TM2"]
+    "category": "Asset & Fleet Management"
   },
   {
     "name": "4flow",
     "countries": ["Europe+"],
-    "category": "Integration & Middleware",
-    "capabilities": ["TM6"]
+    "category": "Integration & Middleware"
   },
   {
     "name": "ACTUATE",
     "countries": ["United States of America"],
-    "category": "Reporting & BI",
-    "capabilities": ["FM1"]
+    "category": "Reporting & BI"
   },
   {
     "name": "ADT TMS",
     "countries": ["Argentina"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM1"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "Agence digitale",
     "countries": ["Belgium", "Czech Republic", "France", "Germany", "Italy", "Poland", "Portugal", "Slovakia", "Spain", "United Kingdom", "Switzerland"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM1"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "Allo",
     "countries": ["United States of America"],
-    "category": "Route & Planning Optimization",
-    "capabilities": ["TM3"]
+    "category": "Route & Planning Optimization"
   },
   {
     "name": "Alpega",
-    "countries": ["Europe"],
-    "category": "Integration & Middleware",
-    "capabilities": ["OM5"]
+    "countries": ["Belgium", "Bulgaria", "Croatia", "Czech Republic", "France", "Germany", "Greece", "Hungary", "Italy", "Latvia", "Lithuania", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "United Kingdom", "Switzerland", "Bosnia and Herzegovina", "Serbia", "Turkey"],
+    "category": "Freight Marketplaces & Tendering"
   },
   {
     "name": "ASTAG GU (Ground)",
     "countries": ["Switzerland"],
-    "category": "Customs",
-    "capabilities": ["TM4"]
+    "category": "Customs"
   },
   {
     "name": "B2P",
-    "countries": ["France"],
-    "category": "Freight Marketplaces & Tendering",
-    "capabilities": ["TM1"]
+    "countries": ["France", "Belgium", "Italy", "Portugal", "Spain"],
+    "category": "Freight Marketplaces & Tendering"
   },
   {
     "name": "Brazil Logic",
     "countries": ["Brazil"],
-    "category": "Track & Trace",
-    "capabilities": ["TM5"]
+    "category": "Track & Trace"
   },
   {
     "name": "Byzaneo",
     "countries": ["Poland"],
-    "category": "Integration & Middleware",
-    "capabilities": ["OM5"]
+    "category": "Integration & Middleware"
   },
   {
     "name": "CADIS (R4)",
     "countries": ["Bulgaria","Czech Republic","France","Hungary","Netherlands","Poland","Romania","Slovakia","Slovenia","Spain"],
-    "category": "Route & Planning Optimization",
-    "capabilities": ["OM5"]
+    "category": "Route & Planning Optimization"
   },
   {
     "name": "Canada reporting",
     "countries": ["Canada"],
-    "category": "Reporting & BI",
-    "capabilities": ["TM6"]
+    "category": "Reporting & BI"
   },
   {
     "name": "Canada scanning",
     "countries": ["Canada"],
-    "category": "Track & Trace",
-    "capabilities": ["TM2"]
+    "category": "Track & Trace"
   },
   {
     "name": "Canada Shipping System",
     "countries": ["Canada"],
-    "category": "Customer Portal",
-    "capabilities": ["TM1"]
+    "category": "Customer Portal"
   },
   {
     "name": "Canada track",
     "countries": ["Canada"],
-    "category": "Track & Trace",
-    "capabilities": ["TM2"]
+    "category": "Track & Trace"
   },
   {
     "name": "Car-O",
     "countries": ["Germany"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM1"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "Centiro (CLL)",
     "countries": ["Europe"],
-    "category": "Integration & Middleware",
-    "capabilities": ["OM5"]
+    "category": "Integration & Middleware"
   },
   {
     "name": "CEVA IOD",
     "countries": ["Turkey"],
-    "category": "Mobile Applications",
-    "capabilities": ["TM2"]
+    "category": "Mobile Applications"
   },
   {
     "name": "CEVA Smart",
-    "countries": ["Ireland","Portugal","United Kingdom","United States of America","China","Singapore","Malaysia","Thailand","Indonesia","Philippines","Vietnam","Cambodia","Chile","Colombia","Peru","Brazil","Argentina","United Arab Emirates"],
-    "category": "Customer Portal",
-    "capabilities": ["TM1"]
+    "countries": ["United Kingdom"],
+    "category": "Customer Portal"
   },
   {
     "name": "CEVA SPOT MODULE",
-    "countries": ["Benelux","France","Germany","Italy","Poland","Portugal","Spain"],
-    "category": "Digital Forwarding",
-    "capabilities": ["TM1"]
+    "countries": ["Benelux","France","Germany","Poland","Portugal","Spain"],
+    "category": "Digital Forwarding"
   },
   {
     "name": "CEVA YMS",
     "countries": ["United States of America","Netherlands","Poland"],
-    "category": "YMS",
-    "capabilities": ["TM3"]
+    "category": "YMS"
   },
   {
     "name": "CEVACONNECT (PFS)",
     "countries": ["Belgium", "Bulgaria", "Croatia", "Czech Republic", "France", "Germany", "Greece", "Hungary", "Ireland", "Lithuania", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "Switzerland", "Morocco", "Tunisia"],
-    "category": "Customer Portal",
-    "capabilities": ["OM5"]
+    "category": "Customer Portal"
   },
   {
     "name": "Cevalution",
     "countries": ["Turkey"],
-    "category": "Track & Trace",
-    "capabilities": ["TM5"]
+    "category": "Track & Trace"
   },
   {
     "name": "CEVASSETS (BEXTER Trackonline)",
-    "countries": ["Europe"],
-    "category": "Asset & Fleet Management",
-    "capabilities": ["TM2"]
+    "countries": ["Belgium", "Bulgaria", "Croatia", "Czech Republic", "France", "Germany", "Greece", "Hungary", "Latvia", "Lithuania", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "United Kingdom", "Switzerland", "Bosnia and Herzegovina", "Serbia", "Morocco", "Tunisia"],
+    "category": "Asset & Fleet Management"
   },
   {
     "name": "CEVATrack mailing",
-    "countries": ["United Kingdom", "Ireland"],
-    "category": "Documents&Collaboration",
-    "capabilities": ["OM5"]
+    "countries": ["United Kingdom"],
+    "category": "Documents&Collaboration"
   },
   {
     "name": "Cevatrack-Responsive",
-    "countries": ["United Kingdom", "Ireland"],
-    "category": "Customer Portal",
-    "capabilities": ["OM5"]
+    "countries": ["United Kingdom"],
+    "category": "Customer Portal"
   },
   {
     "name": "Chronotruck",
     "countries": ["Europe"],
-    "category": "Digital Forwarding",
-    "capabilities": ["OM5","TM2","TM4","TM5","TM6","CM5","CM6","ANM3","FM1","CMAC3","MOS3","MOS6","MPC1","PCS1","PCS2","PCS3","PCS4","PCS5","PCS6","PCS7","PCS8","PCS9","SCOC4","MCCI1","PTC4","MCP1","MME1"]
+    "excludeCountries": ["Italy"],
+    "category": "Digital Forwarding"
   },
   {
     "name": "ClaimOVL",
     "countries": ["Turkey"],
-    "category": "Claims & Damages",
-    "capabilities": ["TM6"]
+    "category": "Claims & Damages"
   },
   {
     "name": "CMS",
     "countries": ["Belgium", "Bulgaria", "Croatia", "Czech Republic", "France", "Germany", "Greece", "Hungary", "Italy", "Latvia", "Lithuania", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "United Kingdom", "Switzerland", "Bosnia and Herzegovina", "Serbia", "Turkey", "Morocco", "Tunisia"],
-    "category": "Carriers Portal",
-    "capabilities": ["TM1"]
+    "category": "Carriers Portal"
   },
   {
     "name": "Comdata",
     "countries": ["United States of America"],
-    "category": "Financial & Settlement Systems",
-    "capabilities": ["TM4"]
+    "category": "Financial & Settlement Systems"
   },
   {
     "name": "Control Tower",
     "countries": ["Turkey"],
-    "category": "Track & Trace",
-    "capabilities": ["TM5"]
+    "category": "Track & Trace"
   },
   {
     "name": "C-Portal",
     "countries": ["Italy"],
-    "category": "Customer Portal",
-    "capabilities": ["TM5"]
+    "category": "Customer Portal"
   },
   {
     "name": "CrossDock - iSeries",
     "countries": ["United States of America"],
-    "category": "Control & Quality",
-    "capabilities": ["TM2"]
+    "category": "Control & Quality"
   },
   {
     "name": "CUBE IQ",
     "countries": ["Argentina", "Uruguay"],
-    "category": "Route & Planning Optimization",
-    "capabilities": ["TM1"]
+    "category": "Route & Planning Optimization"
   },
   {
     "name": "DAGITIM",
     "countries": ["Turkey"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM1"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "DAR AL BETA - Tech consulting",
     "countries": ["Saudi Arabia"],
-    "category": "Integration & Middleware",
-    "capabilities": ["TM1"]
+    "category": "Integration & Middleware"
   },
   {
     "name": "Datascope DMS",
     "countries": ["United Kingdom","Ireland"],
-    "category": "Customer Portal",
-    "capabilities": ["TM2"]
+    "category": "Customer Portal"
   },
   {
     "name": "DC BRAIN",
     "countries": ["Belgium", "Bulgaria", "Croatia", "Czech Republic", "France", "Germany", "Greece", "Hungary", "Italy", "Latvia", "Lithuania", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "United Kingdom", "Switzerland", "Bosnia and Herzegovina", "Serbia"],
-    "category": "Route & Planning Optimization",
-    "capabilities": ["TM3"]
+    "category": "Route & Planning Optimization"
   },
   {
     "name": "DEEWAN - SMS",
     "countries": ["Saudi Arabia"],
-    "category": "Documents & Collaboration",
-    "capabilities": ["TM1"]
+    "category": "Documents & Collaboration"
   },
   {
     "name": "Descartes GLN (Ground)",
     "countries": ["United States of America"],
-    "category": "Integration & Middleware",
-    "capabilities": ["TM4"]
+    "category": "Integration & Middleware"
   },
   {
     "name": "Digital Archieve",
     "countries": ["Turkey"],
-    "category": "Documents & Collaboration",
-    "capabilities": ["OM5"]
+    "category": "Documents & Collaboration"
   },
   {
     "name": "Dispatch",
     "countries": ["France"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM1"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "DMS",
     "countries": ["Turkey"],
-    "category": "Documents & Collaboration",
-    "capabilities": ["OM5"]
-  },
-  {
-    "name": "E2Open Booking",
-    "countries": ["Saudi Arabia"],
-    "category": "Asset & Fleet Management",
-    "capabilities": ["TM1"]
+    "category": "Documents & Collaboration"
   },
   {
     "name": "Docsweb",
     "countries": ["Italy"],
-    "category": "Documents & Collaboration",
-    "capabilities": ["TM7"]
+    "category": "Documents & Collaboration"
+  },
+  {
+    "name": "E2Open Booking",
+    "countries": ["Saudi Arabia"],
+    "category": "Asset & Fleet Management"
   },
   {
     "name": "EDICOM iPaaS",
     "countries": ["Europe"],
-    "category": "Integration & Middleware",
-    "capabilities": ["OM5"]
+    "category": "Integration & Middleware"
   },
   {
     "name": "Ediel Portale Collaborativo",
     "countries": ["Italy"],
-    "category": "Customer Portal",
-    "capabilities": ["TM2"]
+    "category": "Customer Portal"
   },
   {
     "name": "EGL Scan Executive",
     "countries": ["United States of America"],
-    "category": "Track & Trace",
-    "capabilities": ["TM5"]
+    "category": "Track & Trace"
   },
   {
     "name": "EGL Scan Shuttles",
     "countries": ["United States of America"],
-    "category": "Track & Trace",
-    "capabilities": ["TM5"]
+    "category": "Track & Trace"
   },
   {
     "name": "ELO ANZ",
     "countries": ["Australia", "New Zealand"],
-    "category": "Documents & Collaboration",
-    "capabilities": ["OM5"]
+    "category": "Documents & Collaboration"
   },
   {
     "name": "Fleetwave",
-    "countries": ["Belgium", "Czech Republic", "France", "Germany", "Netherlands", "Poland", "Spain", "United Kingdom", "Turkey", "Morocco", "United States of America", "Canada ", "Australia", "Thailand", "India", "Saudi Arabia"],
-    "category": "Asset & Fleet Management",
-    "capabilities": ["TM2"]
+    "countries": ["Belgium", "Czech Republic", "France", "Germany", "Netherlands", "Poland", "Spain", "Morocco", "United States of America", "Canada ", "Australia", "Thailand", "India", "Saudi Arabia"],
+    "category": "Asset & Fleet Management"
   },
   {
     "name": "Fleetzy",
     "countries": ["Saudi Arabia"],
-    "category": "Track & Trace",
-    "capabilities": ["TM5"]
+    "category": "Track & Trace"
   },
   {
     "name": "FM May",
     "countries": ["China"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM1"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "Galactica",
     "countries": ["Poland"],
-    "category": "Documents & Collaboration",
-    "capabilities": ["TM7"]
+    "category": "Documents & Collaboration"
   },
   {
     "name": "Gefcopack",
     "countries": ["Belgium", "Bulgaria", "Croatia", "Czech Republic", "France", "Germany", "Greece", "Hungary", "Italy", "Latvia", "Lithuania", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "United Kingdom", "Switzerland", "Bosnia and Herzegovina", "Serbia", "Turkey", "Morocco", "Tunisia"],
-    "category": "Asset & Fleet Management",
-    "capabilities": ["TM2"]
+    "category": "Asset & Fleet Management"
   },
   {
     "name": "Genio",
     "countries": ["Genio"],
-    "category": "Integration & Middleware",
-    "capabilities": ["OM5"]
+    "category": "Integration & Middleware"
   },
   {
     "name": "Geoserver",
     "countries": ["Europe+"],
-    "category": "Integration & Middleware",
-    "capabilities": ["TM3"]
+    "category": "Integration & Middleware"
   },
   {
     "name": "GLT",
     "countries": ["Spain"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM1"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "GM Customs Webportal",
     "countries": ["United States of America","Canada"],
-    "category": "Customer Portal",
-    "capabilities": ["TM4"]
+    "category": "Customer Portal"
   },
   {
     "name": "GoComet Tracking",
     "countries": ["Saudi Arabia"],
-    "category": "Track & Trace",
-    "capabilities": ["TM5"]
+    "category": "Track & Trace"
   },
   {
     "name": "GS1",
     "countries": ["France"],
-    "category": "Integration & Middleware",
-    "capabilities": ["OM5"]
+    "category": "Integration & Middleware"
   },
   {
     "name": "Home Delivery",
-    "countries": ["Canada", "United States of America"],
-    "category": "Customer Portal",
-    "capabilities": ["TM7"]
+    "countries": ["United States of America"],
+    "category": "Customer Portal"
   },
   {
     "name": "i2 replacement",
     "countries": ["United States of America"],
-    "category": "Financial & Settlement Systems",
-    "capabilities": ["TM4"]
+    "category": "Financial & Settlement Systems"
   },
   {
     "name": "INES",
@@ -391,607 +328,507 @@
   {
     "name": "INSPECTO",
     "countries": ["Poland"],
-    "category": "Control & Quality",
-    "capabilities": ["TM2"]
+    "category": "Control & Quality"
   },
   {
     "name": "Inter Site Journaling",
     "countries": ["United Kingdom","Ireland"],
-    "category": "Reporting & BI",
-    "capabilities": ["TM6"]
+    "category": "Reporting & BI"
   },
   {
     "name": "Jasper Reports",
     "countries": ["United Kingdom","Ireland","Benelux"],
-    "category": "Financial & Settlement Systems",
-    "capabilities": ["TM6"]
+    "category": "Financial & Settlement Systems"
   },
   {
     "name": "LA",
     "countries": ["Turkey"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM1"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "Leopard",
     "countriesRef": "Anz",
-    "category": "Track & Trace",
-    "capabilities": ["TM2"]
+    "category": "Track & Trace"
   },
   {
     "name": "Logistix",
     "countries": ["Italy","Belgium","Netherlands"],
-    "category": "Track & Trace",
-    "capabilities": ["TM2"]
+    "category": "Track & Trace"
   },
   {
     "name": "LOSCAM",
     "countries": ["Australia"],
-    "category": "Track & Trace",
-    "capabilities": ["CM1","CM2","CM3","CM4","CM5","CM6"]
+    "category": "Track & Trace"
   },
   {
     "name": "Map&Guide",
     "countries": ["Belgium", "Bulgaria", "Croatia", "Czech Republic", "France", "Germany", "Greece", "Hungary", "Italy", "Latvia", "Lithuania", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "United Kingdom", "Switzerland", "Bosnia and Herzegovina", "Serbia", "Turkey", "Morocco", "Tunisia"],
-    "category": "Track & Trace",
-    "capabilities": ["TM3"]
+    "category": "Track & Trace"
   },
   {
     "name": "Matrix EAI SCM",
     "countries": ["Benelux"],
-    "category": "Integration & Middleware",
-    "capabilities": ["TM1"]
+    "category": "Integration & Middleware"
   },
   {
     "name": "Matrix FSS",
     "countries": ["Netherlands", "Poland", "Spain", "Turkey", "United States of America", "Mexico", "Japan", "China", "Singapore", "Malaysia", "Thailand", "Indonesia", "Vietnam", "Chile", "Colombia", "Costa Rica", "Guatemala", "Panama", "Peru", "Paraguay", "Uruguay", "India", "United Arab Emirates"],
-    "category": "Financial & Settlement Systems",
-    "capabilities": ["TM4"]
+    "category": "Financial & Settlement Systems"
   },
   {
     "name": "Matrix SCI",
     "countries": ["Netherlands", "Poland", "Spain", "Turkey", "United States of America", "Canada ", "Mexico", "Japan", "China", "Singapore", "Malaysia", "Thailand", "Indonesia", "Philippines", "Vietnam", "Cambodia", "Laos", "Myanmar", "Brunei", "Chile", "Colombia", "Costa Rica", "Guatemala", "Panama", "Peru", "Paraguay", "Uruguay", "India", "United Arab Emirates"],
-    "category": "Reporting & BI",
-    "capabilities": ["OM5"]
+    "category": "Reporting & BI"
   },
   {
     "name": "Matrix SCM",
     "countries": ["Ireland", "Netherlands", "United Kingdom", "United States of America", "Canada ", "Mexico", "China", "Singapore", "Malaysia", "Thailand", "Philippines", "Cambodia", "Laos", "Myanmar", "Brunei"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM1"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "Matrix TMS",
     "countries": ["Netherlands", "Spain", "Turkey", "United States of America", "Canada ", "Mexico", "China", "Singapore", "Malaysia", "Thailand", "Indonesia", "Philippines", "Vietnam", "Cambodia", "Laos", "Myanmar", "Brunei", "Chile", "Colombia", "Costa Rica", "Guatemala", "Panama", "Peru", "Paraguay", "Uruguay", "India", "United Arab Emirates"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM1","TM2","TM3","OM1","OP1"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "Matrix TMS - Core+",
     "countries": ["Canada ", "Mexico", "China", "Singapore", "Malaysia", "Thailand", "Philippines", "Vietnam", "Cambodia", "Laos", "Myanmar", "Brunei", "India", "United Arab Emirates"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM1"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "Matrix TMS Mobile",
     "countries": ["Turkey", "United States of America", "Canada ", "Mexico", "China", "Singapore", "Malaysia", "Thailand", "Indonesia", "Philippines", "Vietnam", "Cambodia", "Laos", "Myanmar", "Brunei", "Chile", "Colombia", "Costa Rica", "Guatemala", "Panama", "Peru", "Paraguay", "Uruguay", "United Arab Emirates"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM2"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "Matrix Wiki", 
     "countries": ["Netherlands", "Poland", "Spain", "Turkey", "United States of America", "Mexico", "Japan", "China", "Singapore", "Malaysia", "Thailand", "Indonesia", "Vietnam", "Chile", "Colombia", "Costa Rica", "Guatemala", "Panama", "Peru", "Paraguay", "Uruguay", "India", "United Arab Emirates"],
-    "category": "Documents & Collaboration",
-    "capabilities": ["TM2"]
+    "category": "Documents & Collaboration"
   },
   {
     "name": "MazdaEdi", 
     "countries": ["Turkey"],
-    "category": "Integration & Middleware",
-    "capabilities": ["TM2"]
+    "category": "Integration & Middleware"
   },
   {
     "name": "MDC Smartphone app",
     "countries": ["Italy"],
-    "category": "Last Mile Distribution",
-    "capabilities": ["OM5"]
+    "category": "Last Mile Distribution"
   },
   {
     "name": "Metis",
-    "countries": ["Europe+"],
-    "category": "Financial & Settlement Systems",
-    "capabilities": ["TM1"]
+    "countries": ["Belgium", "Bulgaria", "Croatia", "Czech Republic", "France", "Germany", "Greece", "Hungary", "Italy", "Latvia", "Lithuania", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "United Kingdom", "Switzerland", "Bosnia and Herzegovina", "Serbia", "Turkey", "Morocco", "Tunisia"],
+    "category": "Financial & Settlement Systems"
   },
   {
     "name": "Microlise POD",
     "countries": ["United Kingdom","Ireland"],
-    "category": "Track & Trace",
-    "capabilities": ["TM5"]
+    "category": "Track & Trace"
   },
   {
     "name": "MiQuest",
     "countries": ["United Kingdom","Ireland"],
-    "category": "Asset & Fleet Management",
-    "capabilities": ["TM2"]
+    "category": "Asset & Fleet Management"
   },
   {
     "name": "MLC Connect",
     "countries": ["Saudi Arabia"],
-    "category": "Customer Portal",
-    "capabilities": ["TM5"]
+    "category": "Customer Portal"
   },
   {
     "name": "MPO eTMS",
     "countries": ["Netherlands"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM1"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "MPO SCOS",
     "countries": ["Netherlands"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM1"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "MPO SCOS France",
     "countries": ["France"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM1"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "MS Dynamics",
-    "countries": ["United Kingdom","Ireland"],
-    "category": "Customer Portal",
-    "capabilities": ["TM2"]
+    "countries": ["United Kingdom"],
+    "category": "Customer Portal"
   },
   {
     "name": "MSN 2.0",
     "countries": ["Italy"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM1"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "My-Fleet",
     "countries": ["Australia"],
-    "category": "Track & Trace",
-    "capabilities": ["TM5"]
+    "category": "Track & Trace"
   },
   {
     "name": "Nike Scanning",
     "countries": ["United Kingdom","Ireland"],
-    "category": "Track & Trace",
-    "capabilities": ["TM2"]
+    "category": "Track & Trace"
   },
   {
     "name": "Nortam dimensioning",
     "countries": ["Canada"],
-    "category": "Integration & Middleware",
-    "capabilities": ["TM3"]
+    "category": "Integration & Middleware"
   },
   {
     "name": "Omprompt",
     "countries": ["United Kingdom","Ireland","Benelux"],
-    "category": "Integration & Middleware",
-    "capabilities": ["OM5"]
+    "category": "Integration & Middleware"
   },
   {
     "name": "OMS 3PL (PFS)",
     "countries": ["Belgium", "Bulgaria", "Croatia", "Czech Republic", "France", "Germany", "Greece", "Hungary", "Italy", "Latvia", "Lithuania", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "United Kingdom", "Switzerland", "Bosnia and Herzegovina", "Serbia", "Turkey", "Morocco", "Tunisia"],
-    "category": "Order Management Systems (OMS)",
-    "capabilities": ["OM5"]
+    "category": "Order Management Systems (OMS)"
   },
   {
     "name": "One Dispatch",
     "countries": ["Canada"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM1"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "Oplus",
     "countries": ["Belgium", "Bulgaria", "Croatia", "Czech Republic", "France", "Germany", "Greece", "Hungary", "Italy", "Latvia", "Lithuania", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "United Kingdom", "Switzerland", "Bosnia and Herzegovina", "Serbia", "Turkey", "Morocco", "Tunisia"],
-    "category": "Route & Planning Optimization",
-    "capabilities": ["TM1"]
+    "category": "Route & Planning Optimization"
   },
   {
     "name": "Oracle - Analytics",
     "countries": ["Saudi Arabia"],
-    "category": "Reporting & BI",
-    "capabilities": ["TM6"]
+    "category": "Reporting & BI"
   },
   {
     "name": "Oracle BI Solutions",
     "countries": ["Turkey","Saudi Arabia"],
-    "category": "Reporting & BI",
-    "capabilities": ["OM5"]
+    "category": "Reporting & BI"
   },
   {
     "name": "Oracle-EBS",
     "countries": ["Saudi Arabia"],
-    "category": "Financial & Settlement Systems",
-    "capabilities": ["FM1"]
+    "category": "Financial & Settlement Systems"
   },
   {
     "name": "Oracle-OTM",
     "countries": ["Saudi Arabia"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["OM5"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "Oracle-Siebel",
     "countries": ["Saudi Arabia"],
-    "category": "Customer Relationship Management (CRM)",
-    "capabilities": ["OM1"]
+    "category": "Customer Relationship Management (CRM)"
   },
   {
     "name": "ORION ANZ",
     "countries": ["Anz"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM1"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "ORION Brazil",
     "countries": ["Brazil","Argentina"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM1"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "ORS",
     "countries": ["Poland"],
-    "category": "Route & Planning Optimization",
-    "capabilities": ["TM1"]
+    "category": "Route & Planning Optimization"
   },
   {
     "name": "OVL_INES_BATCH",
     "countries": ["Turkey"],
-    "category": "Integration & Middleware",
-    "capabilities": ["TM4"]
+    "category": "Integration & Middleware"
   },
   {
     "name": "Panoptes (Ex Neopost)",
     "countries": ["Belgium", "Bulgaria", "Croatia", "Czech Republic", "France", "Germany", "Greece", "Hungary", "Italy", "Latvia", "Lithuania", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "United Kingdom", "Switzerland", "Bosnia and Herzegovina", "Serbia", "Turkey", "Morocco", "Tunisia"],
-    "category": "Track & Trace",
-    "capabilities": ["TM5"]
+    "category": "Track & Trace"
   },
   {
     "name": "Paragon UKIN",
     "countries": ["United States of America","United Kingdom","Ireland"],
-    "category": "Route & Planning Optimization",
-    "capabilities": ["TM2"]
+    "category": "Route & Planning Optimization"
   },
   {
     "name": "PARTS",
     "countries": ["Anz"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM1"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "PathFind",
     "countries": ["Brazil"],
-    "category": "Route & Planning Optimization",
-    "capabilities": ["TM3"]
+    "category": "Route & Planning Optimization"
   },
   {
     "name": "PC Miler",
     "countries": ["United States of America","Canada","Mexico"],
-    "category": "Track & Trace",
-    "capabilities": ["TM4"]
+    "category": "Track & Trace"
   },
   {
     "name": "PCSTrac",
     "countries": ["United States of America"],
-    "category": "Track & Trace",
-    "capabilities": ["TM1"]
+    "category": "Track & Trace"
   },
   {
     "name": "Piattaforma SMS",
     "countries": ["Italy"],
-    "category": "Documents & Collaboration",
-    "capabilities": ["TM7"]
+    "category": "Documents & Collaboration"
   },
   {
     "name": "Project 44 (Ground)",
-    "countries": ["Belgium", "Bulgaria", "Croatia", "Czech Republic", "France", "Germany", "Greece", "Hungary", "Italy", "Latvia", "Lithuania", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "United Kingdom", "Switzerland", "Bosnia and Herzegovina", "Serbia", "Turkey", "Morocco", "United States of America", "Mexico", "China", "Singapore", "Malaysia", "Thailand", "Indonesia", "Vietnam", "Cambodia", "Brazil", "Argentina", "Chile", "Colombia", "Peru", "India", "Saudi Arabia"],
-    "category": "Track & Trace",
-    "capabilities": ["TM5"]
+    "countries": ["Belgium", "Bulgaria", "Croatia", "Czech Republic", "France", "Germany", "Greece", "Hungary", "Italy", "Latvia", "Lithuania", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "United Kingdom", "Switzerland", "Bosnia and Herzegovina", "Serbia", "Turkey", "Morocco", "United States of America", "Mexico", "China", "Singapore", "Malaysia", "Thailand", "Indonesia", "Vietnam", "Cambodia", "Brazil", "Argentina", "Chile", "Colombia", "Peru", "India", "Saudi Arabia","United Arab Emirates"],
+    "category": "Track & Trace"
   },
   {
     "name": "PTV OptiFlow",
     "countries": ["Australia"],
-    "category": "Route & Planning Optimization",
-    "capabilities": ["TM5","TM3"]
+    "category": "Route & Planning Optimization"
   },
   {
     "name": "PTV Route Optimizer",
     "countries": ["Italy"],
-    "category": "Route & Planning Optimization",
-    "capabilities": ["TM3"]
+    "category": "Route & Planning Optimization"
   },
   {
     "name": "PTV Xserver",
     "countries": ["Europe+"],
-    "category": "Integration & Middleware",
-    "capabilities": ["TM3"]
+    "category": "Integration & Middleware"
   },
   {
     "name": "Quadient (Ground)",
     "countries": ["Germany","Switzerland"],
-    "category": "Customer Relationship Management (CRM)",
-    "capabilities": ["TM3"]
+    "category": "Customer Relationship Management (CRM)"
   },
   {
     "name": "Raal Trans",
-    "countries": ["Europe+"],
-    "category": "Freight Marketplaces & Tendering",
-    "capabilities": ["TM1"]
+    "countries": ["Czech Republic", "Italy", "Slovakia", "United Kingdom", "Turkey"],
+    "category": "Freight Marketplaces & Tendering"
   },
   {
     "name": "Rail-Flow",
     "countries": ["Germany"],
-    "category": "Freight Marketplaces & Tendering",
-    "capabilities": ["TM4"]
+    "category": "Freight Marketplaces & Tendering"
   },
   {
     "name": "REPOM",
     "countries": ["Brazil"],
-    "category": "Financial & Settlement Systems",
-    "capabilities": ["TM4"]
+    "category": "Financial & Settlement Systems"
   },
   {
     "name": "RO e-Transport",
     "countries": ["Romania"],
-    "category": "Legal Compliance",
-    "capabilities": ["TM4"]
+    "category": "Legal Compliance"
   },
   {
     "name": "RouteMax",
     "countries": ["United States of America"],
-    "category": "Route & Planning Optimization",
-    "capabilities": ["TM2"]
+    "category": "Route & Planning Optimization"
   },
   {
     "name": "Samsara MyFleet",
-    "countries": ["Belgium", "Czech Republic", "France", "Germany", "Netherlands", "Poland", "Spain", "United Kingdom", "Turkey", "Morocco", "United States of America", "Canada ", "Australia", "Thailand", "India", "Saudi Arabia"],
-    "category": "Asset & Fleet Management",
-    "capabilities": ["TM5"]
+    "countries": ["Belgium", "Czech Republic", "France", "Germany", "Netherlands", "Poland", "Spain", "United Kingdom", "Morocco", "United States of America", "Canada ", "Australia", "Thailand", "India", "Saudi Arabia"],
+    "category": "Asset & Fleet Management"
   },
   {
     "name": "SDS",
-    "countries": ["France", "Turkey"],
-    "category": "Asset & Fleet Management",
-    "capabilities": ["TM2"]
+    "countries": ["France"],
+    "category": "Asset & Fleet Management"
   },
   {
     "name": "Sertifi",
     "countries": ["United States of America"],
-    "category": "Track & Trace",
-    "capabilities": ["TM7"]
+    "category": "Track & Trace"
   },
   {
     "name": "Sherlock Waste",
     "countries": ["Europe"],
-    "category": "Documents & Collaboration",
-    "capabilities": ["OM5"]
+    "category": "Documents & Collaboration"
   },
   {
     "name": "Ship track",
     "countries": ["Canada"],
-    "category": "Track & Trace",
-    "capabilities": ["TM5"]
+    "category": "Track & Trace"
   },
   {
     "name": "Shiplify",
     "countries": ["United States of America"],
-    "category": "Route & Planning Optimization",
-    "capabilities": ["TM6"]
+    "category": "Route & Planning Optimization"
   },
   {
     "name": "SHIPPER",
     "countries": ["Switzerland"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM2"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "Silogtran",
     "countries": ["Colombia"],
-    "category": "Legal Compliance",
-    "capabilities": ["TM6"]
+    "category": "Legal Compliance"
   },
   {
     "name": "Smartsheet",
     "countries": ["Australia"],
-    "category": "Documents & Collaboration",
-    "capabilities": ["OM5"]
+    "category": "Documents & Collaboration"
   },
   {
     "name": "SOTI MobiControl",
     "countries": ["Australia"],
-    "category": "Track & Trace",
-    "capabilities": ["TM5"]
+    "category": "Track & Trace"
   },
   {
     "name": "Speditor.net",
-    "countries": ["Croatia", "Czech Republic", "Estonia", "Hungary", "Latvia", "Lithuania", "Romania", "Slovakia", "Slovenia"],
-    "category": "Freight Marketplaces & Tendering",
-    "capabilities": ["TM1"]
+    "countries": ["Greece", "Bulgaria"],
+    "category": "Freight Marketplaces & Tendering"
   },
   {
     "name": "Speed TMS",
     "countries": ["Poland"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM1"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "SphereWMS",
     "countries": ["United States of America"],
-    "category": "Warehouse Management Systems (WMS)",
-    "capabilities": ["TM2"]
+    "category": "Warehouse Management Systems (WMS)"
   },
   {
     "name": "Stratagi",
     "countries": ["United States of America"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM1"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "Sub-It",
     "countries": ["United Kingdom"],
-    "category": "Financial & Settlement Systems",
-    "capabilities": ["TM4"]
+    "category": "Financial & Settlement Systems"
   },
   {
     "name": "Surgere",
     "countries": ["United States of America"],
-    "category": "Track & Trace",
-    "capabilities": ["TM5"]
+    "category": "Track & Trace"
   },
   {
     "name": "Tarot Analytics",
     "countries": ["Netherlands"],
-    "category": "Last Mile Distribution",
-    "capabilities": ["OM5"]
+    "category": "Last Mile Distribution"
   },
   {
     "name": "TC1GDO",
     "countries": ["Italy"],
-    "category": "Freight Marketplaces & Tendering",
-    "capabilities": ["TM1"]
+    "category": "Freight Marketplaces & Tendering"
   },
   {
     "name": "Teliae",
     "countries": ["France"],
-    "category": "Last Mile Distribution",
-    "capabilities": ["OM5"]
+    "category": "Last Mile Distribution"
   },
   {
     "name": "Teranalytics-Linehaul Scheduler",
     "countries": ["United States of America"],
-    "category": "Route & Planning Optimization",
-    "capabilities": ["TM3"]
+    "category": "Route & Planning Optimization"
   },
   {
     "name": "Teranalytics-Station Gravity",
     "countries": ["United States of America"],
-    "category": "Route & Planning Optimization",
-    "capabilities": ["TM6"]
+    "category": "Route & Planning Optimization"
   },
   {
     "name": "Time Slot Control (Ground)",
     "countries": ["Poland"],
-    "category": "Track & Trace",
-    "capabilities": ["TM2"]
+    "category": "Track & Trace"
   },
   {
     "name": "Timocom",
-    "countries": ["Europe+"],
-    "category": "Freight Marketplaces & Tendering",
-    "capabilities": ["TM1","OP1","OP2"]
+    "countries": ["Belgium", "Bulgaria", "Croatia", "Czech Republic", "France", "Germany", "Greece", "Hungary", "Italy", "Latvia", "Lithuania", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "United Kingdom", "Switzerland", "Bosnia and Herzegovina", "Serbia", "Turkey"],
+    "category": "Freight Marketplaces & Tendering"
   },
   {
     "name": "TMS Customer Web",
     "countries": ["Turkey"],
-    "category": "Customer Portal",
-    "capabilities": ["OM5"]
+    "category": "Customer Portal"
   },
   {
     "name": "TMS Portal",
     "countries": ["Anz"],
-    "category": "Customer Portal",
-    "capabilities": ["TM5"]
+    "category": "Customer Portal"
   },
   {
     "name": "TOSCA",
     "countries": ["Europe"],
-    "category": "Integration & Middleware",
-    "capabilities": ["OM5"]
+    "excludeCountries": ["Italy", "United Kingdom", "Turkey"],
+    "category": "Integration & Middleware"
   },
   {
     "name": "Trans.eu",
-    "countries": ["Poland"],
-    "category": "Freight Marketplaces & Tendering",
-    "capabilities": ["TM1"]
+    "countries": ["Poland", "Germany", "Latvia", "Lithuania"],
+    "category": "Freight Marketplaces & Tendering"
   },
   {
     "name": "TransNET",
     "countries": ["United Kingdom","Ireland"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM1"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "Transporeon",
-    "countries": ["France"],
-    "category": "Freight Marketplaces & Tendering",
-    "capabilities": ["OM5"]
+    "countries": ["Belgium", "Bulgaria", "Croatia", "Czech Republic", "France", "Germany", "Greece", "Hungary", "Italy", "Latvia", "Lithuania", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "United Kingdom", "Switzerland", "Bosnia and Herzegovina", "Serbia"],
+    "category": "Freight Marketplaces & Tendering"
   },
   {
     "name": "TraspoJ",
     "countries": ["Italy"],
-    "category": "Financial & Settlement Systems",
-    "capabilities": ["TM4"]
+    "category": "Financial & Settlement Systems"
   },
   {
     "name": "TV Preview - API",
     "countries": ["Czech Republic"],
-    "category": "Integration & Middleware",
-    "capabilities": ["TM2"]
+    "category": "Integration & Middleware"
   },
   {
     "name": "Upply",
-    "countries": ["Europe"],
-    "category": "Freight Marketplaces & Tendering",
-    "capabilities": ["TM1"]
+    "countries": ["France","Poland"],
+    "category": "Freight Marketplaces & Tendering"
   },
   {
     "name": "Vectio",
-    "countries": ["Poland"],
-    "category": "Carriers Portal",
-    "capabilities": ["TM4"]
+    "countries": ["Czech Republic","Germany","Poland","Slovakia","Switzerland"],
+    "category": "Carriers Portal"
   },
   {
     "name": "Vypex",
     "countries": ["Australia"],
-    "category": "Track & Trace",
-    "capabilities": ["TM5"]
+    "category": "Track & Trace"
   },
   {
     "name": "Waplanner",
     "countries": ["France","Poland"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["CM1","CM2","CM3","CM4","CM5","CM6"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "Winroute",
     "countries": ["France"],
-    "category": "Route & Planning Optimization",
-    "capabilities": ["TM3"]
+    "category": "Route & Planning Optimization"
   },
   {
     "name": "Worldport",
     "countries": ["United States of America"],
-    "category": "Transport Management Systems (TMS)",
-    "capabilities": ["TM1"]
+    "category": "Transport Management Systems (TMS)"
   },
   {
     "name": "Xcargo",
-    "countries": ["Europe+"],
-    "category": "Route & Planning Optimization",
-    "capabilities": ["TM3"]
+    "countries": ["France","Italy","United Kingdom","Turkey"],
+    "category": "Route & Planning Optimization"
   },
   {
     "name": "XMLSpy", 
     "countries": ["France"],
-    "category": "Integration & Middleware",
-    "capabilities": ["OM5"]
+    "category": "Integration & Middleware"
   },
   {
     "name": "XPlanis xGU",
     "countries": ["Switzerland"],
-    "category": "Financial & Settlement Systems",
-    "capabilities": ["TM4"]
+    "category": "Financial & Settlement Systems"
   },
   {
     "name": "YMS 3M",
     "countries": ["United States of America"],
-    "category": "YMS",
-    "capabilities": ["TM3"]
+    "category": "YMS"
   }
 ]

@@ -362,7 +362,7 @@ input:checked + .slider:before {
     display: grid;
     grid-template-columns: 1fr;
     gap: 6px;
-    margin-top: 15px;
+    margin-top: 5px;
     padding-top: 15px;
     border-top: 1px solid #ddd;
     /* Largeur normale - pas de forçage horizontal */
@@ -677,11 +677,11 @@ input:checked + .slider:before {
     font-size: 1.3em;
     color: #4169E1;
     font-weight: 600;
-    margin: 10px 0 5px 15px;
+    margin: 13px 0 10px 15px;
 }
 
 .l3-list {
-    margin: 5px 0 10px 30px;
+    margin: 10px 0 12px 30px;
 }
 
 .l3-item {
@@ -723,11 +723,17 @@ input:checked + .slider:before {
     font-weight: bold;
     color: white;
     background: #1a237e;
-    margin: 15px 0 10px 0;
+    margin: 2px 0 12px 0;
     padding: 8px 12px;
     border-radius: 4px;
     display: block;
     text-align: center;
+}
+
+/* Supprimer les marges du div conteneur des sections L1 */
+#info-panel > div {
+    margin: 0;
+    padding: 0;
 }
 
 /* Styles pour la popup des détails L4 */

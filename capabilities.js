@@ -359,7 +359,7 @@ function displayApplicationCapabilities(appName, appData) {
             if (capabilities?.L2?.[l2Id]) {
                 appCapabilities.push({
                     id: l2Id,
-                    l3_name: `Niveau L2: ${capabilities.L2[l2Id]}`,
+                    l3_name: capabilities.L2[l2Id],
                     l2_name: capabilities.L2[l2Id],
                     l1_name: findL1ForL2(l2Id)
                 });
@@ -653,7 +653,7 @@ function generateCapabilitiesInterface(bcMapping, capabilitiesForm) {
         categoryTitle.style.borderRadius = '4px';
         categoryTitle.style.display = 'block';
         categoryTitle.style.textAlign = 'center';
-        categoryTitle.style.marginBottom = '15px';
+        categoryTitle.style.marginBottom = '5px';
 
         // Slider pour L1
         const sliderWrapper = document.createElement('label');

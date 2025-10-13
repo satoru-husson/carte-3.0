@@ -9,11 +9,21 @@
   <div class="container">
     <div class="header">
       <h1>Application Assessment</h1>
-      <p>Comparez les Business Capabilities de vos applications</p>
+      <p>Compare the business capabilities of your applications</p>
       <div class="detail-level-container" style="margin-bottom:1em;">
         <div id="selected-apps-info" style="margin-bottom:0.5em; font-style:italic; color:#666;"></div>
         <label style="margin-left:2em;">Application 1 <select id="app1" class="search-input"></select></label>
         <label style="margin-left:1em;">Application 2 <select id="app2" class="search-input"></select></label>
+      </div>
+      
+      <!-- Slider de niveau de détail -->
+      <div class="detail-level-slider">
+        <span class="level-label">Level of Business Capabilities:</span>
+        <div class="level-indicator">
+          <div class="level-step active" data-level="1" id="level-1">1</div>
+          <div class="level-step" data-level="2" id="level-2">2</div>
+          <div class="level-step" data-level="3" id="level-3">3</div>
+        </div>
       </div>
     </div>
     <div class="comparison-area">
@@ -69,6 +79,28 @@
       }
       
       app1.onchange=app2.onchange=show;
+      
+      // Gestionnaires d'événements pour le slider de niveau
+      document.getElementById('level-1').onclick = function() {
+        l1Tab = null;
+        l2Tab = null;
+        show();
+      };
+      
+      document.getElementById('level-2').onclick = function() {
+        if (l1Tab) {
+          // Si on a déjà un L1 sélectionné, on revient au niveau 2
+          l2Tab = null;
+          show();
+        }
+        // Si aucun L1 n'est sélectionné, on ne peut pas aller au niveau 2
+      };
+      
+      document.getElementById('level-3').onclick = function() {
+        // On ne peut aller au niveau 3 que si on a déjà L1 et L2
+        // Cette fonctionnalité est gérée par les clics sur les L2
+      };
+      
       show();
     }
     function getDef(code, level) {
@@ -86,6 +118,30 @@
       if (percentage < 50) return 'coverage coverage-orange';
       if (percentage < 80) return 'coverage coverage-black';
       return 'coverage coverage-green';
+    }
+    
+    // Fonction pour mettre à jour le slider de niveau
+    function updateLevelSlider() {
+      const level1 = document.getElementById('level-1');
+      const level2 = document.getElementById('level-2');
+      const level3 = document.getElementById('level-3');
+      
+      // Reset all levels
+      [level1, level2, level3].forEach(el => {
+        el.classList.remove('active');
+      });
+      
+      // Determine current level and update slider
+      if (!l1Tab) {
+        // Niveau 1: Vue d'ensemble
+        level1.classList.add('active');
+      } else if (l1Tab && !l2Tab) {
+        // Niveau 2: Détail L1 avec L2s
+        level2.classList.add('active');
+      } else if (l1Tab && l2Tab) {
+        // Niveau 3: Détail L2 avec L3s/L4s
+        level3.classList.add('active');
+      }
     }
     
     function show() {
@@ -110,7 +166,14 @@
         // Tableau L3/L4 pour la L2 sélectionnée
         Object.keys(bc[l1Tab][l2Tab]).forEach(l3=>{
           const l3Def = getDef(l3,3);
-          html+=`<tr class="l3-row"><td><b>${l3Def}</b></td><td class="tick app-column">${a1.l3 && a1.l3.includes(l3)?'✓':''}</td><td class="tick app-column">${a2.l3 && a2.l3.includes(l3)?'✓':''}</td></tr>`;
+          
+          // Calculer le nombre de L4 couvertes pour cette L3
+          const l4s = bc[l1Tab][l2Tab][l3] || [];
+          const l4Count = l4s.length;
+          const a1L4Count = l4s.filter(l4 => a1.l4 && a1.l4.includes(l4)).length;
+          const a2L4Count = l4s.filter(l4 => a2.l4 && a2.l4.includes(l4)).length;
+          
+          html+=`<tr class="l3-row"><td><b>${l3Def}</b></td><td class="coverage app-column">${a1L4Count}/${l4Count}</td><td class="coverage app-column">${a2L4Count}/${l4Count}</td></tr>`;
           if(Array.isArray(bc[l1Tab][l2Tab][l3])){
             bc[l1Tab][l2Tab][l3].forEach(l4=>{
               const l4Def = getDef(l4,4);
@@ -120,8 +183,21 @@
         });
         } else if(l1Tab){
           html += `<button id="btn-back-l1" class="btn btn-secondary" style="margin-bottom:1em;">&larr; Retour</button>`;
-          // Boutons horizontaux L1
-          let l1Buttons = Object.keys(bc).map(l1 => `<button class="btn l1btn${l1Tab===l1?' selected':''}" data-l1="${l1}" style="margin-right:0.5em;">${getDef(l1,1)}</button>`).join('');
+          // Boutons horizontaux L1 - ne montrer que ceux avec des capabilities L3
+          let l1Buttons = Object.keys(bc).filter(l1 => {
+            // Vérifier si au moins une des deux applications a des L3 dans ce L1
+            let hasApp1L3 = false;
+            let hasApp2L3 = false;
+            
+            Object.keys(bc[l1]).forEach(l2 => {
+              Object.keys(bc[l1][l2]).forEach(l3 => {
+                if (a1.l3 && a1.l3.includes(l3)) hasApp1L3 = true;
+                if (a2.l3 && a2.l3.includes(l3)) hasApp2L3 = true;
+              });
+            });
+            
+            return hasApp1L3 || hasApp2L3;
+          }).map(l1 => `<button class="btn l1btn${l1Tab===l1?' selected':''}" data-l1="${l1}" style="margin-right:0.5em;">${getDef(l1,1)}</button>`).join('');
           html += `<div id="l1-buttons" style="margin-bottom:1em;">${l1Buttons}</div>`;
           Object.keys(bc[l1Tab]).forEach(l2=>{
             const l2Def = getDef(l2,2);
@@ -132,6 +208,10 @@
             let a1L3Above20 = 0;
             let a2L3Above20 = 0;
             
+            // Vérifier si au moins une des deux applications a des L3 dans cette L2
+            let hasApp1L3 = false;
+            let hasApp2L3 = false;
+            
             l3Children.forEach(l3 => {
               const l4s = bc[l1Tab][l2][l3] || [];
               const l4Count = l4s.length;
@@ -140,24 +220,31 @@
               const a1Percentage = l4Count > 0 ? Math.round((a1L4Count / l4Count) * 100) : 0;
               const a2Percentage = l4Count > 0 ? Math.round((a2L4Count / l4Count) * 100) : 0;
               
+              // Vérifier si cette L3 est couverte par les applications
+              if (a1.l3 && a1.l3.includes(l3)) hasApp1L3 = true;
+              if (a2.l3 && a2.l3.includes(l3)) hasApp2L3 = true;
+              
               if (a1Percentage >= 20) a1L3Above20++;
               if (a2Percentage >= 20) a2L3Above20++;
             });
             
-            html+=`<tr class="l2-row l2-clickable"><td><b>${l2Def}</b></td><td class="coverage app-column">${a1L3Above20}/${totalL3}</td><td class="coverage app-column">${a2L3Above20}/${totalL3}</td></tr>`;
-            Object.keys(bc[l1Tab][l2]).forEach(l3=>{
-              const l3Def = getDef(l3,3);
-              // Calculer le pourcentage de L4 filles couvertes pour cette L3
-              const l4s = bc[l1Tab][l2][l3] || [];
-              const l4Count = l4s.length;
-              const a1L4Count = l4s.filter(l4 => a1.l4 && a1.l4.includes(l4)).length;
-              const a2L4Count = l4s.filter(l4 => a2.l4 && a2.l4.includes(l4)).length;
-              const a1Percentage = l4Count > 0 ? Math.round((a1L4Count / l4Count) * 100) : 0;
-              const a2Percentage = l4Count > 0 ? Math.round((a2L4Count / l4Count) * 100) : 0;
-              const a1ColorClass = getColorClass(a1Percentage);
-              const a2ColorClass = getColorClass(a2Percentage);
-              html+=`<tr class="l3-row"><td style='padding-left:2em;'>${l3Def}</td><td class="tick app-column ${a1ColorClass}">${a1Percentage}%</td><td class="tick app-column ${a2ColorClass}">${a2Percentage}%</td></tr>`;
-            });
+            // N'afficher la L2 que si au moins une des deux applications a des L3 dans cette L2
+            if (hasApp1L3 || hasApp2L3) {
+              html+=`<tr class="l2-row l2-clickable" data-l2="${l2}"><td><b>${l2Def}</b></td><td class="coverage app-column">${a1L3Above20}/${totalL3}</td><td class="coverage app-column">${a2L3Above20}/${totalL3}</td></tr>`;
+              Object.keys(bc[l1Tab][l2]).forEach(l3=>{
+                const l3Def = getDef(l3,3);
+                // Calculer le pourcentage de L4 filles couvertes pour cette L3
+                const l4s = bc[l1Tab][l2][l3] || [];
+                const l4Count = l4s.length;
+                const a1L4Count = l4s.filter(l4 => a1.l4 && a1.l4.includes(l4)).length;
+                const a2L4Count = l4s.filter(l4 => a2.l4 && a2.l4.includes(l4)).length;
+                const a1Percentage = l4Count > 0 ? Math.round((a1L4Count / l4Count) * 100) : 0;
+                const a2Percentage = l4Count > 0 ? Math.round((a2L4Count / l4Count) * 100) : 0;
+                const a1ColorClass = getColorClass(a1Percentage);
+                const a2ColorClass = getColorClass(a2Percentage);
+                html+=`<tr class="l3-row"><td>${l3Def}</td><td class="tick app-column ${a1ColorClass}">${a1Percentage}%</td><td class="tick app-column ${a2ColorClass}">${a2Percentage}%</td></tr>`;
+              });
+            }
           });
         } else {
           // Vue niveau 1 : tableau global sans boutons
@@ -170,6 +257,10 @@
             let app1L2Above20 = 0;
             let app2L2Above20 = 0;
             
+            // Vérifier si au moins une des deux applications a des L2 dans cette catégorie L1
+            let hasApp1L2 = false;
+            let hasApp2L2 = false;
+            
             l2Keys.forEach(l2 => {
               const l3Children = Object.keys(bc[l1][l2]);
               const totalL3 = l3Children.length;
@@ -181,34 +272,44 @@
                 const app1PercentL2 = (app1CoveredL3 / totalL3) * 100;
                 const app2PercentL2 = (app2CoveredL3 / totalL3) * 100;
                 
+                // Marquer qu'il y a au moins une L2 concernée si au moins une L3 est couverte
+                if (app1CoveredL3 > 0) hasApp1L2 = true;
+                if (app2CoveredL3 > 0) hasApp2L2 = true;
+                
                 if (app1PercentL2 >= 20) app1L2Above20++;
                 if (app2PercentL2 >= 20) app2L2Above20++;
               }
             });
             
-            // Afficher les fractions au lieu des pourcentages pour les L1
-            html+=`<tr class="l1-row"><td><b>${l1Def}</b></td><td class="coverage app-column">${app1L2Above20}/${totalL2}</td><td class="coverage app-column">${app2L2Above20}/${totalL2}</td></tr>`;
-            Object.keys(bc[l1]).forEach(l2=>{
-              const l2Def = getDef(l2,2);
-              
-              // Calculer le nombre de L3 filles de cette L2
-              const l3Children = Object.keys(bc[l1][l2]);
-              const totalL3 = l3Children.length;
-              
-              // Calculer combien de L3 sont couvertes par chaque application
-              const app1CoveredL3 = l3Children.filter(l3 => a1.l3 && a1.l3.includes(l3)).length;
-              const app2CoveredL3 = l3Children.filter(l3 => a2.l3 && a2.l3.includes(l3)).length;
-              
-              // Calculer les pourcentages arrondis
-              const app1PercentL2 = totalL3 > 0 ? Math.round((app1CoveredL3 / totalL3) * 100) : 0;
-              const app2PercentL2 = totalL3 > 0 ? Math.round((app2CoveredL3 / totalL3) * 100) : 0;
-              
-              // Déterminer les classes de couleur
-              const app1ColorClass = getColorClass(app1PercentL2);
-              const app2ColorClass = getColorClass(app2PercentL2);
-              
-              html+=`<tr class="l2-row l2-clickable" data-l1="${l1}" data-l2="${l2}"><td>${l2Def}</td><td class="${app1ColorClass} app-column">${app1PercentL2}%</td><td class="${app2ColorClass} app-column">${app2PercentL2}%</td></tr>`;
-            });
+            // N'afficher le L1 que si au moins une des deux applications a des L2 concernés
+            if (hasApp1L2 || hasApp2L2) {
+              // Afficher les fractions au lieu des pourcentages pour les L1
+              html+=`<tr class="l1-row" data-l1="${l1}"><td><b>${l1Def}</b></td><td class="coverage app-column">${app1L2Above20}/${totalL2}</td><td class="coverage app-column">${app2L2Above20}/${totalL2}</td></tr>`;
+            }
+            // N'afficher les L2 que si le L1 parent a été affiché
+            if (hasApp1L2 || hasApp2L2) {
+              Object.keys(bc[l1]).forEach(l2=>{
+                const l2Def = getDef(l2,2);
+                
+                // Calculer le nombre de L3 filles de cette L2
+                const l3Children = Object.keys(bc[l1][l2]);
+                const totalL3 = l3Children.length;
+                
+                // Calculer combien de L3 sont couvertes par chaque application
+                const app1CoveredL3 = l3Children.filter(l3 => a1.l3 && a1.l3.includes(l3)).length;
+                const app2CoveredL3 = l3Children.filter(l3 => a2.l3 && a2.l3.includes(l3)).length;
+                
+                // Calculer les pourcentages arrondis
+                const app1PercentL2 = totalL3 > 0 ? Math.round((app1CoveredL3 / totalL3) * 100) : 0;
+                const app2PercentL2 = totalL3 > 0 ? Math.round((app2CoveredL3 / totalL3) * 100) : 0;
+                
+                // Déterminer les classes de couleur
+                const app1ColorClass = getColorClass(app1PercentL2);
+                const app2ColorClass = getColorClass(app2PercentL2);
+                
+                html+=`<tr class="l2-row l2-clickable" data-l1="${l1}" data-l2="${l2}"><td>${l2Def}</td><td class="${app1ColorClass} app-column">${app1PercentL2}%</td><td class="${app2ColorClass} app-column">${app2PercentL2}%</td></tr>`;
+              });
+            }
           });
         }
       html+='</tbody></table></div>';
@@ -234,11 +335,10 @@
           };
         });
         // L2 cliquables
-        Array.from(document.querySelectorAll('.l2-row.l2-clickable')).forEach((row, idx) => {
+        Array.from(document.querySelectorAll('.l2-row.l2-clickable')).forEach((row) => {
           row.style.cursor = 'pointer';
           row.onclick = function() {
-            const l2s = Object.keys(bc[l1Tab]);
-            l2Tab = l2s[idx];
+            l2Tab = this.getAttribute('data-l2');
             show();
           };
         });
@@ -247,8 +347,7 @@
         Array.from(document.querySelectorAll('.l1-row')).forEach(row => {
           row.style.cursor = 'pointer';
           row.onclick = function() {
-            const idx = Array.from(document.querySelectorAll('.l1-row')).indexOf(this);
-            l1Tab = Object.keys(bc)[idx];
+            l1Tab = this.getAttribute('data-l1');
             l2Tab = null;
             show();
           };
@@ -263,6 +362,9 @@
           };
         });
       }
+      
+      // Mettre à jour le slider de niveau
+      updateLevelSlider();
     }
   </script>
 </body>

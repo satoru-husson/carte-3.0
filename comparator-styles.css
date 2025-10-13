@@ -178,6 +178,10 @@ body {
     background: #f0f4ff !important;
 }
 
+.l2-row:has(b) {
+    background: #e3f2fd !important;
+}
+
 .l2-header {
     font-weight: bold;
     color: #1565c0;
@@ -185,8 +189,13 @@ body {
     font-size: 1.05em;
 }
 
-.l2-name, .l3-name {
+.l2-name {
     padding-left: 20px !important;
+    font-style: italic;
+}
+
+.l3-name {
+    padding-left: 0 !important;
     font-style: italic;
 }
 
@@ -487,6 +496,11 @@ th {
     font-size: 1.3em;
 }
 
+/* Niveau 3 - L3 (fractions) - même police que L2 niveau 2 */
+.l3-row .coverage {
+    font-size: 1.4em;
+}
+
 .implemented {
     background: rgba(76, 175, 80, 0.1);
     color: #2e7d32;
@@ -593,6 +607,70 @@ th {
     background: #616161;
 }
 
+/* Slider de niveau de détail */
+.detail-level-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+}
+
+.level-indicator {
+    display: flex;
+    position: relative;
+    background: #e9ecef;
+    border-radius: 25px;
+    padding: 4px;
+    margin: 0 15px;
+}
+
+.level-step {
+    position: relative;
+    width: 50px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #6c757d;
+    background: #dee2e6;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.level-step.active {
+    background: #1976d2;
+    color: white;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
+}
+
+.level-step:hover:not(.active) {
+    background: #c6c8ca;
+    color: #495057;
+}
+
+.level-label {
+    font-size: 12px;
+    color: #666;
+    margin: 0 10px;
+    font-weight: 500;
+}
+
+.level-description {
+    font-size: 13px;
+    color: #666;
+    text-align: center;
+    margin-top: 8px;
+    font-style: italic;
+}
+
 @media (max-width: 768px) {
     .main-content {
         flex-direction: column;
@@ -604,5 +682,14 @@ th {
     
     .available-apps {
         grid-template-columns: 1fr;
+    }
+    
+    .detail-level-slider {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .level-indicator {
+        margin: 0;
     }
 }
