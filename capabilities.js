@@ -1,4 +1,43 @@
 
+// Fonctions utilitaires pour trouver les parents L1/L2 d'un L3
+function findL2ForL3(l3Id) {
+    // Utiliser le mapping BC pour trouver le L2 parent
+    if (window.bcMapping && window.bcMapping._hierarchy) {
+        for (const l1 of Object.values(window.bcMapping._hierarchy)) {
+            for (const [l2Name, l2Content] of Object.entries(l1)) {
+                if (l2Content && l2Content[l3Id]) {
+                    return capabilities?.L2?.[l2Name] || l2Name;
+                }
+            }
+        }
+    }
+    // Fallback: extraire le préfixe (ex: "MOS1" -> "MOS")
+    const l2Id = l3Id.replace(/\d+$/, '');
+    return capabilities?.L2?.[l2Id] || l2Id;
+}
+
+function findL1ForL3(l3Id) {
+    // Extraire le préfixe principal (ex: "MOS1" -> "M" puis trouver le L1 correspondant)
+    const prefix = l3Id.charAt(0);
+    const l1Map = {
+        'O': 'OM',
+        'T': 'TM', 
+        'C': 'CM',
+        'A': 'ANM',
+        'P': 'OP',
+        'F': 'FM',
+        'M': 'OM' // pour MOS, MCP, etc.
+    };
+    const l1Id = l1Map[prefix] || prefix;
+    return capabilities?.L1?.[l1Id] || l1Id;
+}
+
+function findL1ForL2(l2Id) {
+    // Pour les L2, c'est plus simple : TM1 -> TM, OM5 -> OM, etc.
+    const l1Id = l2Id.replace(/\d+$/, '');
+    return capabilities?.L1?.[l1Id] || l1Id;
+}
+
 // Utilitaire pour aplatir le mapping hiérarchique L3→L4 à partir de bc-mapping.json
 function flattenL3toL4Mapping(bcMapping) {
     const l3ToL4 = {};
@@ -252,22 +291,83 @@ function attachL4BlockEventListeners() {
 
 // Fonction pour afficher les capabilities d'une application
 function displayApplicationCapabilities(appName, appData) {
-    // Stocker l'application actuellement affichée
-    currentDisplayedApp = { name: appName, data: appData };
+    console.log(`🔍 displayApplicationCapabilities appelée pour: ${appName}`);
+    console.log(`🔍 appData reçue:`, appData);
+    console.log(`🔍 window.appCapabilitiesUnified existe:`, !!window.appCapabilitiesUnified);
     
     const infoPanel = document.getElementById('info-panel');
+    if (!infoPanel) {
+        console.error('❌ Élément info-panel introuvable !');
+        return;
+    }
+    
     document.getElementById('sidebar').className = 'l2-expanded';
     
     const appCapabilities = [];
     
-    // Utiliser la propriété l3 de l'application (ex: appData.l3) pour lister les L3 à afficher
+    // Utiliser les données déjà injectées dans appData ou la variable globale
     let allL3 = appData?.l3 || [];
+    let allL2 = appData?.l2 || [];
     let appL4List = appData?.l4 || [];
+    
+    console.log(`🔍 Données initiales - L3: ${allL3.length}, L2: ${allL2.length}, L4: ${appL4List.length}`);
+    
+    // Si les données ne sont pas dans appData, essayer la variable globale
+    if ((allL3.length === 0 && allL2.length === 0) && window.appCapabilitiesUnified && window.appCapabilitiesUnified[appName]) {
+        console.log(`🔍 Utilisation de window.appCapabilitiesUnified pour ${appName}`);
+        const unifiedData = window.appCapabilitiesUnified[appName];
+        allL3 = unifiedData.l3 || [];
+        allL2 = unifiedData.l2 || [];
+        appL4List = unifiedData.l4 || [];
+        console.log(`🔍 Données depuis unified - L3: ${allL3.length}, L2: ${allL2.length}, L4: ${appL4List.length}`);
+    }
+    
+    console.log(`📋 Capabilities pour ${appName}:`, {l3: allL3.length, l2: allL2.length, l4: appL4List.length, data: {allL3, allL2, appL4List}});
+    console.log(`🔍 Variable capabilities globale:`, capabilities);
+    
+    // Stocker l'application actuellement affichée avec les données unifiées
+    currentDisplayedApp = { 
+        name: appName, 
+        data: {
+            ...appData,
+            l3: allL3,
+            l2: allL2,
+            l4: appL4List
+        }
+    };
+    
+    // Traiter les L3 s'il y en a
     allL3.forEach(l3Id => {
-        if (capabilities[l3Id]) {
-            appCapabilities.push({ id: l3Id, ...capabilities[l3Id] });
+        // Utiliser le nouveau format bc-definitions.json
+        if (capabilities?.L3?.[l3Id]) {
+            appCapabilities.push({ 
+                id: l3Id, 
+                l3_name: capabilities.L3[l3Id],
+                // Trouver le L2 et L1 parent pour cet L3
+                l2_name: findL2ForL3(l3Id),
+                l1_name: findL1ForL3(l3Id)
+            });
+        } else {
+            console.warn(`⚠️ Capability L3 "${l3Id}" non trouvée dans les définitions`);
         }
     });
+    
+    // Si pas de L3, traiter les L2 directement
+    if (allL3.length === 0 && allL2.length > 0) {
+        console.log(`🔍 Pas de L3, traitement des L2:`, allL2);
+        allL2.forEach(l2Id => {
+            if (capabilities?.L2?.[l2Id]) {
+                appCapabilities.push({
+                    id: l2Id,
+                    l3_name: `Niveau L2: ${capabilities.L2[l2Id]}`,
+                    l2_name: capabilities.L2[l2Id],
+                    l1_name: findL1ForL2(l2Id)
+                });
+            } else {
+                console.warn(`⚠️ Capability L2 "${l2Id}" non trouvée dans les définitions`);
+            }
+        });
+    }
     
     let capabilitiesHTML = `
         <div style="margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
@@ -353,6 +453,9 @@ function displayApplicationCapabilities(appName, appData) {
 
 // Fonction globale pour retourner à la liste complète des applications
 window.showAllApplications = function() {
+    // Remettre la sidebar à son état normal
+    document.getElementById('sidebar').className = '';
+    
     // Réafficher la liste complète
     if (typeof globalFilterFunction === 'function') {
         globalFilterFunction();
@@ -361,6 +464,17 @@ window.showAllApplications = function() {
 
 // Filtre et affiche les markers selon les capabilities sélectionnées (tags actifs)
 function filterAndShowMarkersByCapabilities() {
+    // Vérifier s'il y a des catégories sélectionnées
+    const checkedCategories = Array.from(document.querySelectorAll('.category-checkbox:checked'))
+        .map(checkbox => checkbox.value);
+    
+    if (checkedCategories.length > 0) {
+        // Si des catégories sont sélectionnées, utiliser le filtre combiné
+        filterBySelectedCategories();
+        return;
+    }
+    
+    // Sinon, filtrage normal par capabilities uniquement
     // Collecter les sélections actives L2/L3/L4
     let activeL2 = new Set();
     let activeL3 = new Set();
@@ -389,16 +503,28 @@ function filterAndShowMarkersByCapabilities() {
         if (l4Id) activeL4.add(l4Id);
     });
 
+    console.log('🔍 Filtrage capabilities:');
+    console.log('🔍 L2 actifs:', Array.from(activeL2));
+    console.log('🔍 L3 actifs:', Array.from(activeL3));
+    console.log('🔍 L4 actifs:', Array.from(activeL4));
+
     let filteredApps = [];
     if (activeL2.size === 0 && activeL3.size === 0 && activeL4.size === 0) {
         filteredApps = allApplications;
+        console.log('🔍 Aucun filtre actif, affichage de toutes les applications:', allApplications.length);
     } else {
         filteredApps = allApplications.filter(app => {
             const matchL2 = app.l2 && app.l2.some(l2 => activeL2.has(l2));
             const matchL3 = app.l3 && app.l3.some(l3 => activeL3.has(l3));
             const matchL4 = app.l4 && app.l4.some(l4 => activeL4.has(l4));
+            
+            if (matchL2 || matchL3 || matchL4) {
+                console.log(`✅ ${app.name} correspond - L2:${matchL2} L3:${matchL3} L4:${matchL4}`, {l2: app.l2, l3: app.l3, l4: app.l4});
+            }
+            
             return matchL2 || matchL3 || matchL4;
         });
+        console.log('🔍 Applications filtrées:', filteredApps.length, 'sur', allApplications.length);
     }
     
     // Mettre à jour la liste des applications filtrées pour la recherche
@@ -488,8 +614,18 @@ function filterAndShowMarkersByCapabilities() {
 
 // Nouvelle version : génère l'interface à partir de la hiérarchie de bc-mapping.json
 function generateCapabilitiesInterface(bcMapping, capabilitiesForm) {
-    if (!bcMapping || !bcMapping._hierarchy) return;
+    console.log('🔧 generateCapabilitiesInterface appelée');
+    console.log('🔧 bcMapping reçu:', !!bcMapping);
+    console.log('🔧 capabilitiesForm trouvé:', !!capabilitiesForm);
+    
+    if (!bcMapping || !bcMapping._hierarchy) {
+        console.error('❌ bcMapping ou bcMapping._hierarchy manquant !');
+        console.log('🔧 bcMapping:', bcMapping);
+        return;
+    }
+    
     const hierarchy = bcMapping._hierarchy;
+    console.log('🔧 Hiérarchie trouvée, nombre de L1:', Object.keys(hierarchy).length);
     // Pour chaque L1
     Object.entries(hierarchy).forEach(([l1Id, l2s]) => {
         // Utiliser bcL4Definitions.L1 pour le nom L1
@@ -566,7 +702,9 @@ function generateCapabilitiesInterface(bcMapping, capabilitiesForm) {
 
             // Récupérer tous les L3 ids de ce L2
             const allL3Ids = Object.keys(l3s);
-            l2Tag.setAttribute('data-capabilities', allL3Ids.join(','));
+            // IMPORTANT: Ajouter aussi l'ID du L2 lui-même pour les applications qui n'ont que des L2
+            const allCapabilities = [l2Id, ...allL3Ids];
+            l2Tag.setAttribute('data-capabilities', allCapabilities.join(','));
             l2Tag.setAttribute('data-l2-name', l2Name);
 
             // Slider à droite
@@ -826,7 +964,7 @@ async function initializeCapabilities(capData, appData) {
     
     // Générer l'interface des capabilities
     const capabilitiesForm = document.getElementById('capabilities-form');
-    generateCapabilitiesInterface(capData, capabilitiesForm);
+    generateCapabilitiesInterface(window.bcMapping, capabilitiesForm);
     
     // Initialiser la section des catégories
     initializeCategoriesFilter();
@@ -849,7 +987,36 @@ async function initializeCapabilities(capData, appData) {
 
 // Recherche d'applications
 function initializeSearch() {
+    console.log('🔍 initializeSearch appelée');
+    console.log('🔍 DOM ready state:', document.readyState);
+    
+    // Debug complet de la structure DOM
+    const sidebar = document.getElementById('sidebar');
+    const searchContainer = document.querySelector('.search-container');
     const searchInput = document.getElementById('search-input');
+    
+    console.log('🔍 Sidebar trouvé:', !!sidebar);
+    console.log('🔍 Search container trouvé:', !!searchContainer);
+    console.log('🔍 Search input trouvé:', !!searchInput);
+    
+    if (sidebar) {
+        console.log('🔍 Sidebar innerHTML:', sidebar.innerHTML.substring(0, 500));
+        console.log('🔍 Sidebar className:', sidebar.className);
+    }
+    
+    if (searchContainer) {
+        console.log('🔍 Search container style:', searchContainer.style.cssText);
+        console.log('🔍 Search container display:', window.getComputedStyle(searchContainer).display);
+        console.log('🔍 Search container visibility:', window.getComputedStyle(searchContainer).visibility);
+    }
+    
+    if (!searchInput) {
+        console.error('❌ Élément search-input introuvable !');
+        console.log('🔍 Tous les inputs dans sidebar:', sidebar ? sidebar.querySelectorAll('input') : 'pas de sidebar');
+        return;
+    }
+    
+    console.log('✅ Search input trouvé, initialisation des événements...');
     let searchResults = [];
     
     function searchApplications(searchTerm) {
@@ -1052,20 +1219,7 @@ function filterBySelectedCategories() {
     const checkedCategories = Array.from(document.querySelectorAll('.category-checkbox:checked'))
         .map(checkbox => checkbox.value);
     
-    let filteredApps = [];
-    
-    if (checkedCategories.length === 0) {
-        // Aucune catégorie sélectionnée, utiliser le filtrage normal par capabilities
-        filterAndShowMarkersByCapabilities();
-        return;
-    } else {
-        // Filtrer par catégories sélectionnées
-        filteredApps = allApplications.filter(app => 
-            checkedCategories.includes(app.category)
-        );
-    }
-    
-    // Appliquer aussi le filtrage par capabilities si des capabilities sont sélectionnées
+    // Collecter toutes les capabilities actives
     let allActiveCapabilities = [];
     
     // Collecter les capacités des tags L2/L1 actifs
@@ -1089,11 +1243,30 @@ function filterBySelectedCategories() {
     // Supprimer les doublons
     allActiveCapabilities = [...new Set(allActiveCapabilities)];
     
-    if (allActiveCapabilities.length > 0) {
-        filteredApps = filteredApps.filter(app =>
-            app.capabilities.some(cap => allActiveCapabilities.includes(cap))
-        );
+    let filteredApps = [];
+    
+    if (checkedCategories.length === 0 && allActiveCapabilities.length === 0) {
+        // Aucun filtre actif, afficher toutes les applications
+        filteredApps = allApplications;
+    } else {
+        // Appliquer un filtre "OU" : applications qui correspondent aux catégories OU aux capabilities
+        filteredApps = allApplications.filter(app => {
+            // Vérifier si l'app correspond aux catégories sélectionnées
+            const matchesCategory = checkedCategories.length === 0 || checkedCategories.includes(app.category);
+            
+            // Vérifier si l'app correspond aux capabilities sélectionnées
+            const matchesCapabilities = allActiveCapabilities.length === 0 || 
+                (app.l2 && app.l2.some(l2 => allActiveCapabilities.includes(l2))) ||
+                (app.l3 && app.l3.some(l3 => allActiveCapabilities.includes(l3))) ||
+                (app.l4 && app.l4.some(l4 => allActiveCapabilities.includes(l4)));
+            
+            // Retourner true si SOIT catégorie SOIT capabilities correspondent (filtre OU)
+            return (checkedCategories.length === 0 || matchesCategory) && 
+                   (allActiveCapabilities.length === 0 || matchesCapabilities);
+        });
     }
+    
+    console.log(`🔍 Filtre combiné: ${checkedCategories.length} catégories, ${allActiveCapabilities.length} capabilities → ${filteredApps.length} applications`);
     
     // Mettre à jour la liste des applications filtrées
     currentFilteredApps = filteredApps;
