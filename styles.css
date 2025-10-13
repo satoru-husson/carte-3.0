@@ -63,6 +63,14 @@ body {
     width: 25.6vw; /* Réduit de 20% : 32vw * 0.8 = 25.6vw */
 }
 
+/* S'assurer que la barre de recherche reste visible en mode l2-expanded */
+#sidebar.l2-expanded .search-container,
+#sidebar.l2-expanded #search-input {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
 #sidebar.expanded {
     width: 22.4vw; /* Ancien niveau pour compatibilité */
 }
